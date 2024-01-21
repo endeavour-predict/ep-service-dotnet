@@ -5,3 +5,5 @@
 /.vs
 /ep-service/bin/Debug
 /ep-service/obj
+/ep-service.OnlineTests/bin/Debug/net8.0
+/ep-service.OnlineTests/obj
