@@ -1,11 +1,11 @@
-﻿using ep_service.Models;
+﻿using ep_models;
 using System.Reflection;
 
-namespace ep_service.Services
+namespace ep_service
 {
-    public static class InputMapper
-    {        
-        public static void MapServiceInputToCalculatorInput<T>(EPInputModel epInputModel, ref T calcInputModel) where T : new()
+    internal static class InputMapper
+    {
+        internal static void MapServiceInputToCalculatorInput<T>(EPInputModel epInputModel, ref T calcInputModel) where T : new()
         {           
             // we'll keep a total of how many calculator properties we are able to map, and throw an exception if we don't find a match for ALL of them in the API inputmodel
             // this is a safety net to catch typos and mismatches in the mapping

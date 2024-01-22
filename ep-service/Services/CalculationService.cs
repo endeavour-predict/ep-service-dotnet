@@ -1,22 +1,19 @@
 ﻿// we have to alias the engine DLLs because they all contain things in the same namespace,
 // see: https://stackoverflow.com/questions/9194495/type-exists-in-2-assemblies
-extern alias qrisk;
+extern alias qrisk3;
 //extern alias qdiab;
 //extern alias qfrac;
 //extern alias qfracsd; // qfracture has a different DLL for ther StandardDefns, the other two don't!
 
 using Core;
-using ep_service.Models;
+using ep_models;
 
-namespace ep_service.Services
+namespace ep_service
 {
-    /// <summary>
-    /// Method and supporting functions to call the engines.
-    /// Escapsulated in this PUBLIC class so it can be called from the automated tests AND the from API Controller
-    /// </summary>
-    public class CalculationService
-    {        
-        public void PerformCalculations(            
+    
+    internal class CalculationService
+    {
+        internal void PerformCalculations(            
                             EPInputModel inputModel,                                                         
                             out PredictionModel predictionModel
                             )
@@ -25,7 +22,7 @@ namespace ep_service.Services
             
             if (inputModel.requestedEngines.Contains(EPStandardDefinitions.Engines.QRisk3))
             {
-                var calc = new qrisk::QRISK3Engine.QRiskCVDAlgorithmCalculator("", "");
+                var calc = new qrisk3::QRISK3Engine.QRiskCVDAlgorithmCalculator("", "");
 
                 // SBP: If provided we use the mean and StDev, If not we calculate it from the list of SBPs
                 Double? meanSBP = inputModel.systolicBloodPressureMean;
@@ -50,7 +47,7 @@ namespace ep_service.Services
                 
                 var calcResult = calc.calculate(
                                     b_cvd: calcInputModel.CVD,
-                                    sex: (qrisk::CRStandardDefinitions.Gender)calcInputModel.sex,
+                                    sex: (qrisk3::CRStandardDefinitions.Gender)calcInputModel.sex,
                                     age: calcInputModel.age,
                                     b_AF: calcInputModel.atrialFibrillation,
                                     b_atypicalantipsy: calcInputModel.atypicalAntipsychoticMedication,
@@ -62,14 +59,14 @@ namespace ep_service.Services
                                     b_semi: calcInputModel.severeMentalIllness,
                                     b_sle: calcInputModel.systemicLupusErythematosus,
                                     b_treatedhyp: calcInputModel.bloodPressureTreatment,
-                                    diabetes_cat: (qrisk::CRStandardDefinitions.DiabetesCat)calcInputModel.diabetesStatus,
+                                    diabetes_cat: (qrisk3::CRStandardDefinitions.DiabetesCat)calcInputModel.diabetesStatus,
                                     bmi: calcInputModel.BMI,
-                                    ethnicity: (qrisk::CRStandardDefinitions.Ethnicity)calcInputModel.ethnicity,
+                                    ethnicity: (qrisk3::CRStandardDefinitions.Ethnicity)calcInputModel.ethnicity,
                                     fh_cvd: calcInputModel.familyHistoryCHD,
                                     rati: calcInputModel.cholesterolRatio,
                                     sbp: meanSBP,
                                     sbps5: stDev,
-                                    smoke_cat: (qrisk::CRStandardDefinitions.SmokeCat)calcInputModel.smokingStatus,
+                                    smoke_cat: (qrisk3::CRStandardDefinitions.SmokeCat)calcInputModel.smokingStatus,
                                     town: calcInputModel.townsendScore
                                     );
 

@@ -9,3 +9,5 @@
 /ep-service.OnlineTests/obj
 /ep-service/bin/Release
 /ep-service.OnlineTests/bin/Release/net8.0
+/ep-service.OnlineUserTests/bin
+/ep-service.OnlineUserTests/obj

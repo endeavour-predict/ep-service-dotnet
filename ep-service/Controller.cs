@@ -1,5 +1,4 @@
-﻿using ep_service.Models;
-using ep_service.Services;
+﻿using ep_models;
 using System.Reflection;
 
 namespace ep_service

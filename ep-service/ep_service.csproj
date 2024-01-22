@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>ep_service</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -9,9 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="QRISK3-EH" Version="1.0.0">
-      <Aliases>qrisk</Aliases>
-    </PackageReference>
+    <ProjectReference Include="..\..\ep-models\ep_models.csproj" />
+    <ProjectReference Include="..\..\qrisk3\Engine\QRISK3-EH.csproj">
+      <Aliases>qrisk3</Aliases>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>
