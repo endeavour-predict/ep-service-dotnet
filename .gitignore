@@ -7,3 +7,5 @@
 /ep-service/obj
 /ep-service.OnlineTests/bin/Debug/net8.0
 /ep-service.OnlineTests/obj
+/ep-service/bin/Release
+/ep-service.OnlineTests/bin/Release/net8.0
