@@ -26,7 +26,7 @@ namespace ep_service.Models
         /// <summary>
         /// The data provided by the user for this Prediction.
         /// </summary>
-        public EPInputModel InputModel { get; set; }
+        public EPInputModel EPInputModel { get; set; }
 
     }
 
@@ -102,6 +102,6 @@ public class Meta
     /// <summary>
     /// ISO DateTime (UTC) that the Service was invoked
     /// </summary>
-    public DateTime ApiTimeStampUTC { get; set; }    
+    public DateTime RequestTimeStampUTC { get; set; }    
 }
 

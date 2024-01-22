@@ -1,0 +1,13 @@
+﻿@using Newtonsoft.Json
+@using ep_service.Models
+@model PredictionModel;
+
+@{    
+    ViewData["Title"] = "Result";
+}
+
+
+<h1 class="display-4">Result</h1>
+
+
+<pre>@Html.Raw(JsonConvert.SerializeObject(Model, Formatting.Indented, new Newtonsoft.Json.Converters.StringEnumConverter()))</pre>

@@ -42,7 +42,7 @@ namespace ep_service.Models
         /// <summary>
         /// The data provided by the user for this Prediction. Identifiable fields are stripped of data and marked as **PI** 
         /// </summary>
-        public EPInputModel InputModel { get; set; }
+        public EPInputModel EngineInputModel { get; set; }
 
 
         /// <summary>
@@ -190,17 +190,18 @@ namespace ep_service.Models
             // use the calculator specific input model to load back into the API input model, this will show the data used in the calc, and nothing more.
             PropertyInfo[] calcInputProperties = typeof(QRisk3InputModel).GetProperties();
             PropertyInfo[] apiInputProperties = typeof(EPInputModel).GetProperties();
-            EPInputModel apiInputModel = new EPInputModel();
+            EPInputModel epInputModel = new EPInputModel();
             foreach (PropertyInfo calcProperty in calcInputProperties)
             {
                 // map the calc param to the genmeric input param, showing the ones used
-                var apiInputProperty = apiInputProperties.Where(p => p.PropertyType.Name == calcProperty.Name).SingleOrDefault();
+                var apiInputProperty = apiInputProperties.Where(p => p.Name == calcProperty.Name).SingleOrDefault();
                 if (apiInputProperty != null)
-                {                    
-                    calcProperty.SetValue(calcInputModel, apiInputProperty.GetValue(apiInputModel));
+                {
+                    apiInputProperty.SetValue(epInputModel, calcProperty.GetValue(calcInputModel));
                 }
             }
-            this.InputModel = apiInputModel;
+            epInputModel.requestedEngines.Add(Engines.QRisk3);
+            this.EngineInputModel = epInputModel;
 
         }
 

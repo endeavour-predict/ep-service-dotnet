@@ -13,8 +13,8 @@ namespace ep_service
             calculationService.PerformCalculations(EPInputModel, out outputModel);
 
             outputModel.Meta.ServiceVersion= Assembly.GetEntryAssembly().GetName().Version.ToString() ;
-            outputModel.Meta.ApiTimeStampUTC = DateTime.UtcNow;
-            outputModel.InputModel = EPInputModel;
+            outputModel.Meta.RequestTimeStampUTC = DateTime.UtcNow;
+            outputModel.EPInputModel = EPInputModel;
             return outputModel;
             
         }

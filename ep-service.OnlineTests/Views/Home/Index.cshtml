@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">EPService (Proof of Concept) Web Test App...</h1>
+    <h4>Enter EPInputModel JSON and request a score</h4>
+    
+    <form action="GetScore" method="post">
+        <textarea name="inputModelJSON" cols="80" rows="20">
+{
+    "requestedEngines": ["QRisk3", "QFracture"],
+    "predictionYears":10,
+    "cvd": false,
+    "sex": "Female",
+    "age": 63,
+    "atypicalAntipsychoticMedication": false,
+    "systemicCorticosteroids": false,
+    "bloodPressureTreatment": false,
+    "diabetesStatus": "Type2",
+    "bmi": 23.3,
+    "ethnicity": "Pakistani",
+    "smokingStatus": "NonSmoker",
+    "townsendScore": 1,    
+    "gestationalDiabetes": false,
+    "learningDisabilities": false,
+    "manicDepressionSchizophrenia": false,
+    "polycysticOvaries": false,
+    "statins": false,
+    "fastingBloodGlucose": 3.1,
+    "familyHistoryDiabetes": false   
+}
+
+        </textarea>
+        <br />
+        <button type="submit">Get Score</button>
+    </form>
+
+
+</div>
+
+<hr />
+
+<h3> Other stuff we could do on this page.... </h3>
+
+<script type="text/javascript">
+
+
+    function getComboA(selectObject) 
+    {
+        var value = selectObject.value;
+        console.log(value);
+        alert ("At this point we could hit the TestPack and pull out pre-defined test data");
+    }
+
+
+    function getTestPackData() {
+        
+        alert("At this point we could hit the 2e6 TestPack and pull out the row they selected");
+    }
+
+    
+
+</script>
+
+<select name="exampleLoader" onchange="getComboA(this)">
+    <option value="0">Load different example JSON...</option>    
+    <option value="1">Young Male Low Risk</option>
+    <option value="2">Young Male Low Risk</option>
+    <option value="3">Young Female High Risk</option>
+    <option value="4">Middle Age Male High Risk</option>
+    <option value="5">Middle Age Female High Risk</option>
+</select>
+
+
+<input type = "text" placeholder="Load TestPack row number 1-2000000"/> <button onclick="getTestPackData()" value="load">Load..</button>
