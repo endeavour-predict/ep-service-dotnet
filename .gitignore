@@ -12,3 +12,6 @@
 /ep-service.OnlineUserTests/bin
 /ep-service.OnlineUserTests/obj
 /ep-service.OnlineUserTests/.vs/ep-service.OnlineTests
+/ep_api/bin/Debug/net8.0
+/ep_api/obj
+/ep_api/Properties/ServiceDependencies
