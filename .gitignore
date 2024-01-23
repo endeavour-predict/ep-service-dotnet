@@ -16,3 +16,4 @@
 /ep_api/obj
 /ep_api/Properties/ServiceDependencies
 /ep_api/bin/Debug/net6.0
+/ep_service.IntegrationTests/obj
