@@ -9,7 +9,7 @@ namespace ep_service
         {
             PredictionModel outputModel;
             var calculationService = new CalculationService();
-            calculationService.PerformCalculations(EPInputModel, out outputModel);S
+            calculationService.PerformCalculations(EPInputModel, out outputModel);
             outputModel.ServiceMeta.ServiceVersion= Assembly.GetEntryAssembly().GetName().Version.ToString();
             outputModel.ServiceMeta.RequestTimeStampUTC = DateTime.UtcNow;
             outputModel.EPInputModel = EPInputModel;

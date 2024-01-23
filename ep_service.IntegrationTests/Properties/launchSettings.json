@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ep_service.IntegrationTests": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\temp\\qrisk3Json \r\nhttps://localhost:7213/"
+    }
+  }
+}
