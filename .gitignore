@@ -11,3 +11,4 @@
 /ep-service.OnlineTests/bin/Release/net8.0
 /ep-service.OnlineUserTests/bin
 /ep-service.OnlineUserTests/obj
+/ep-service.OnlineUserTests/.vs/ep-service.OnlineTests
