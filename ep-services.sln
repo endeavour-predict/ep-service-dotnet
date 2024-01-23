@@ -5,6 +5,10 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ep_service", "ep-service\ep_service.csproj", "{1CF153DC-395A-465E-B68B-EDEFFAFC9782}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ep-api", "ep_api\ep-api.csproj", "{6B8BFA21-E71B-4B51-BBC5-4AC331A2F8D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TEMP (will be nuget)", "TEMP (will be nuget)", "{BDF16C51-0AF5-4384-BCCF-984DE7DC6C20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,10 @@ Global
 		{1CF153DC-395A-465E-B68B-EDEFFAFC9782}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CF153DC-395A-465E-B68B-EDEFFAFC9782}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CF153DC-395A-465E-B68B-EDEFFAFC9782}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B8BFA21-E71B-4B51-BBC5-4AC331A2F8D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B8BFA21-E71B-4B51-BBC5-4AC331A2F8D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B8BFA21-E71B-4B51-BBC5-4AC331A2F8D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B8BFA21-E71B-4B51-BBC5-4AC331A2F8D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

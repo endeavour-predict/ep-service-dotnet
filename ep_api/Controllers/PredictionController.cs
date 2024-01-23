@@ -1,20 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
-using EP_API.Models;
-
+using ep_models;
 
 namespace EP_API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class PredictionController : ControllerBase
-    {
-
-        public string apiVersion { get { return "EP API v0.0.1"; } }
-
+    {        
         public PredictionController()
         {
         }
-
         /// <summary>
         /// Return EP Scores
         /// </summary>        
@@ -24,16 +19,9 @@ namespace EP_API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost(Name = "GetPrediction")]
-        public ActionResult<PredictionModel> Post(APIInputModel inputModel)
-        {
-            PredictionModel outputModel;
-            var calculationService = new CalculationService();
-            calculationService.PerformCalculations(inputModel, out outputModel);
-
-            outputModel.ApiMeta.ApiVersion = apiVersion;
-            outputModel.ApiMeta.ApiTimeStampUTC = DateTime.UtcNow;
-            outputModel.ApiInputModel = inputModel;
-            return outputModel;
+        public ActionResult<PredictionModel> Post(EPInputModel inputModel)
+        {                        
+            return new ep_service.PredictionService().GetScore(inputModel);
         }
     }
 }

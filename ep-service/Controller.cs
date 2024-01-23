@@ -11,8 +11,8 @@ namespace ep_service
             var calculationService = new CalculationService();
             calculationService.PerformCalculations(EPInputModel, out outputModel);
 
-            outputModel.Meta.ServiceVersion= Assembly.GetEntryAssembly().GetName().Version.ToString() ;
-            outputModel.Meta.RequestTimeStampUTC = DateTime.UtcNow;
+            outputModel.ServiceMeta.ServiceVersion= Assembly.GetEntryAssembly().GetName().Version.ToString() ;
+            outputModel.ServiceMeta.RequestTimeStampUTC = DateTime.UtcNow;
             outputModel.EPInputModel = EPInputModel;
             return outputModel;
             

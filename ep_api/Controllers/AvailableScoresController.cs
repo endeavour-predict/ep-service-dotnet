@@ -1,3 +1,4 @@
+using ep_models;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -17,9 +18,9 @@ namespace EP_API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpGet(Name = "GetAvailableScores")]
-        public ActionResult<AvaiableScoresModel> Get()
+        public ActionResult<AvailableScoresModel> Get()
         {                        
-            var model = new AvaiableScoresModel();
+            var model = new AvailableScoresModel();
             var globals = new Globals();
             foreach(var engine in globals.AvailableEngines)
             {
