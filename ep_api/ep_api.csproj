@@ -33,7 +33,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\ep-models\ep_models.csproj" />
     <ProjectReference Include="..\ep-service\ep_service.csproj" />
   </ItemGroup>
 

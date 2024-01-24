@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ep_models" Version="1.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="test-packs" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ep-service\ep-service.csproj" />
+    <ProjectReference Include="..\ep-service\ep_service.csproj" />
   </ItemGroup>
 
 </Project>

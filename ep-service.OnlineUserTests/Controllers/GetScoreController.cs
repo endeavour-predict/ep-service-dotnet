@@ -1,4 +1,4 @@
-using ep_service.Models;
+using ep_models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ep_service.OnlineTests.Models;

@@ -9,10 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ep-models\ep_models.csproj" />
-    <ProjectReference Include="..\..\qrisk3\Engine\QRISK3-EH.csproj">
+    <PackageReference Include="ep_models" Version="1.0.0" />
+    <PackageReference Include="QRisk3" Version="3.0.0">
       <Aliases>qrisk3</Aliases>
-    </ProjectReference>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
