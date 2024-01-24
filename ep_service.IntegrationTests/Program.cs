@@ -42,8 +42,8 @@ foreach (var inputFile in Directory.GetFiles(testFilePath))
         continue;
     }
 
-    Console.WriteLine("Processing file: " + inputFile);
-    resultsLines.Add("Processing: " + inputFile);
+    Console.WriteLine("Testing file: " + inputFile);
+    resultsLines.Add("Testing : " + inputFile);
 
     // make sure we have a corresponding output file (expected results)
     var outputFile = inputFile.Replace("input", "output");
@@ -93,31 +93,38 @@ foreach (var inputFile in Directory.GetFiles(testFilePath))
     var expected_QRisk3HeartAgeScore = expected_engineScores.Results[1];
     var expected_Meta = expected_engineScores.CalculationMeta;
 
-    
+
+    // Test 1 - compare QRisk3 scores    
     if (expected_QRisk3Score.score != actual_QRisk3Score.score)
     {
         resultsLines.Add("FAIL: " + inputFile + " -- expected_QRisk3Score.score: " + expected_QRisk3Score.score + " : actual_QRisk3Score.score" + actual_QRisk3Score.score);
         anythingFailed = true;
     }
 
+    // Test 2 - compare QRisk3 HeartAge scores    
+    // we don't always get a heart age score (like when CVD = true) so we need to check whether we're expecting one
+    if (expected_QRisk3HeartAgeScore != null)
+    {
+        if (expected_QRisk3HeartAgeScore.score != actual_QRisk3HeartAgeScore.score)
+        {
+            resultsLines.Add("FAIL: " + inputFile + " -- expected_QRisk3HeartAgeScore.score: " + expected_QRisk3HeartAgeScore.score + " : actual_QRisk3HeartAgeScore.score" + actual_QRisk3HeartAgeScore.score);
+            anythingFailed = true;
+        }
+    }
 
-    //// we always get a score, even if it's 0.0
-    //Assert.AreEqual(expected_QRisk3Score.score, actual_QRisk3Score.score, test.TestName);
+    // Test 3 - Compare resultstatus 
+    if (expected_Meta.EngineResultStatus != actual_Meta.EngineResultStatus)
+    {
+        resultsLines.Add("FAIL: " + inputFile + " -- expected_Meta.EngineResultStatus: " + expected_Meta.EngineResultStatus + " : actual_Meta.EngineResultStatus" + actual_Meta.EngineResultStatus);
+        anythingFailed = true;
+    }
 
-    //// we don't always get a heart age score (like when CVD = true) so we need to check whether we're expecting one
-    //if (expected_QRisk3HeartAgeScore != null)
-    //{
-    //    Assert.AreEqual(expected_QRisk3HeartAgeScore.score, actual_QRisk3HeartAgeScore.score, test.TestName);
-    //}
-
-    //// Final assertion is that the calc reasons match
-    //Assert.AreEqual(expected_Meta.EngineResultStatus, actual_Meta.EngineResultStatus, test.TestName);
-    //Assert.AreEqual(expected_Meta.EngineResultStatusReason, actual_Meta.EngineResultStatusReason, test.TestName);
-    
-
-
-
-    
+    // Test 4 - Compare resultreason
+    if (expected_Meta.EngineResultStatusReason != actual_Meta.EngineResultStatusReason)
+    {
+        resultsLines.Add("FAIL: " + inputFile + " -- expected_Meta.EngineResultStatusReason: " + expected_Meta.EngineResultStatusReason + " : actual_Meta.EngineResultStatusReason" + actual_Meta.EngineResultStatusReason);
+        anythingFailed = true;
+    }
     testsRun++;
     
 }
