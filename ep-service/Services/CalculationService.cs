@@ -7,6 +7,7 @@ extern alias qrisk3;
 
 using Core;
 using ep_models;
+using System;
 
 namespace ep_service
 {
@@ -28,19 +29,19 @@ namespace ep_service
                 Double? meanSBP = inputModel.systolicBloodPressureMean;
                 Double? stDev = inputModel.systolicBloodPressureStDev;
                 
-                var SBPListQuality = new DataQuality();
-                if (!meanSBP.HasValue && inputModel.systolicBloodPressures != null)
-                {
-                    meanSBP = inputModel.systolicBloodPressures.Average();
-                    stDev = Core.Statistics.StandardDeviation(inputModel.systolicBloodPressures);                    
-                    // we have performed a SBP calculation, we need to tell the user about this in the response.
-                    // use the DataQuality object for this                
-                    SBPListQuality.Parameter = "systolicBloodPressures";
-                    SBPListQuality.Quality = ParameterQuality.OK;
-                    SBPListQuality.SubstituteValue = "Using list of SBP readings to create values: systolicBloodPressureMean=" + meanSBP + ", and systolicBloodPressureStDev=" + stDev;
-                    //performedSBPCalc = true;
-                    //meta.PerformedSystolicBloodPressureCalc = true;
-                }
+                //var SBPListQuality = new DataQuality();
+                //if (!meanSBP.HasValue && inputModel.systolicBloodPressures != null)
+                //{
+                //    meanSBP = inputModel.systolicBloodPressures.Average();
+                //    stDev = Core.Statistics.StandardDeviation(inputModel.systolicBloodPressures);                    
+                //    // we have performed a SBP calculation, we need to tell the user about this in the response.
+                //    // use the DataQuality object for this                
+                //    SBPListQuality.Parameter = "systolicBloodPressures";
+                //    SBPListQuality.Quality = ParameterQuality.OK;
+                //    SBPListQuality.SubstituteValue = "Using list of SBP readings to create values: systolicBloodPressureMean=" + meanSBP + ", and systolicBloodPressureStDev=" + stDev;
+                //    //performedSBPCalc = true;
+                //    //meta.PerformedSystolicBloodPressureCalc = true;
+                //}
 
                 var calcInputModel = new QRisk3InputModel();
                 InputMapper.MapServiceInputToCalculatorInput<QRisk3InputModel>(inputModel, ref calcInputModel);
