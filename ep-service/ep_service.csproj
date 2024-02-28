@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ep_models" Version="1.0.2" />
+    <PackageReference Include="ep_models" Version="1.0.3" />
     <PackageReference Include="QRisk3" Version="3.0.1">
       <Aliases>qrisk3</Aliases>
     </PackageReference>
