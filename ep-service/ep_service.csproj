@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+	  <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>ep_service</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <!--<ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>-->
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ep_models" Version="1.0.1" />
-    <PackageReference Include="QRisk3" Version="3.0.0">
+    <PackageReference Include="ep_models" Version="1.0.2" />
+    <PackageReference Include="QRisk3" Version="3.0.1">
       <Aliases>qrisk3</Aliases>
     </PackageReference>
   </ItemGroup>
