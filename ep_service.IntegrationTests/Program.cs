@@ -151,17 +151,18 @@ static void RunTest(ref int testsRun, PredictionModel expectedPredictionModel, r
     var actual_engineScores = actual_serviceResult.EngineResults.Where(p => p.EngineName == Core.EPStandardDefinitions.Engines.QRisk3).Single();
 
 
-    // having problems with the @id field in the response, so just going ot pull them out by index here
-    //var actual_QRisk3Score = actual_engineScores.Results.First().Where(p => p.id.ToString() == Globals.QRiskScoreUri).Single();
-    //var actual_QRisk3HeartAgeScore = actual_engineScores.Results.Where(p => p.id.ToString() == Globals.QRiskScoreUri + "HeartAge").SingleOrDefault();
-    var actual_QRisk3Score = actual_engineScores.Results[0];
+
+    var actual_QRisk3Score = actual_engineScores.Results.Where(p => p.id.ToString() == "http://endhealth.info/im#Qrisk3").Single();
 
     EngineResultModel.PredictionResult actual_QRisk3HeartAgeScore;
     if (actual_engineScores.Results.Count > 1)
     {
-        actual_QRisk3HeartAgeScore = actual_engineScores.Results[1];
+        actual_QRisk3HeartAgeScore = actual_engineScores.Results.Where(p => p.id.ToString() == "http://endhealth.info/im#Qrisk3HeartAge").Single();
     }
-    else { actual_QRisk3HeartAgeScore = null; }
+    else 
+    { 
+        actual_QRisk3HeartAgeScore = null; 
+    }
     var actual_Meta = actual_engineScores.CalculationMeta;
     var expected_serviceResult = expectedPredictionModel;
     var expected_engineScores = expected_serviceResult.EngineResults[0];
