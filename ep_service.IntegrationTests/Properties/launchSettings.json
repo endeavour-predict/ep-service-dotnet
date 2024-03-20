@@ -2,7 +2,9 @@
   "profiles": {
     "ep_service.IntegrationTests": {
       "commandName": "Project",
-      "commandLineArgs": "TestPack \r\nhttps://localhost:7213/"
+      //"commandLineArgs": "TestPack https://localhost:7213/"
+      "commandLineArgs": "C:\\Temp https://localhost:7213/"
+      
     }
   }
 }
