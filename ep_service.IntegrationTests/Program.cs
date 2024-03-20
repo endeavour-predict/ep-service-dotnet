@@ -134,8 +134,7 @@ static void RunTest(ref int testsRun, PredictionModel expectedPredictionModel, r
     var request = new RestRequest("Prediction", Method.Post);
     request.AddJsonBody(jsonInput);
     var response = client.ExecutePost(request);
-    PredictionModel actualPredictionModel = JsonConvert.DeserializeObject<PredictionModel>(response.Content);
-  
+    
     if (!response.IsSuccessful)
     {
         string extraInfo = response.ErrorMessage;
@@ -144,6 +143,8 @@ static void RunTest(ref int testsRun, PredictionModel expectedPredictionModel, r
         anythingFailed = true;
         return;
     }
+
+    PredictionModel actualPredictionModel = JsonConvert.DeserializeObject<PredictionModel>(response.Content);
 
     // compare results and write out to file/ console
     var actual_serviceResult = actualPredictionModel;

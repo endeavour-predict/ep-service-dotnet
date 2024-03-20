@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ep_service.IntegrationTests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ep_service.OnlineTests", "ep-service.OnlineUserTests\ep_service.OnlineTests.csproj", "{431CE4E6-ED69-44BB-862F-147D4FE07C93}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ep_models", "..\ep-models\ep_models.csproj", "{B2F4360A-4654-4E2C-885F-88E472ECFBAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{431CE4E6-ED69-44BB-862F-147D4FE07C93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{431CE4E6-ED69-44BB-862F-147D4FE07C93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{431CE4E6-ED69-44BB-862F-147D4FE07C93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2F4360A-4654-4E2C-885F-88E472ECFBAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2F4360A-4654-4E2C-885F-88E472ECFBAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2F4360A-4654-4E2C-885F-88E472ECFBAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2F4360A-4654-4E2C-885F-88E472ECFBAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
