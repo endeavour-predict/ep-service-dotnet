@@ -1,17 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+	  <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>ep_service</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <!--<ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>-->
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.1</Version>
+    <Version>1.0.3</Version>
+    <Description>1.0.3
+20 Mar 2024
+Using updated Models witout @ID fields in JSON</Description>
+    <PackageProjectUrl>https://github.com/endeavour-predict/ep-service-dotnet</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ep_models" Version="1.0.1" />
-    <PackageReference Include="QRisk3" Version="3.0.0">
+    <PackageReference Include="ep_models" Version="1.0.4" />
+    <PackageReference Include="QRisk3" Version="3.0.1">
       <Aliases>qrisk3</Aliases>
     </PackageReference>
   </ItemGroup>

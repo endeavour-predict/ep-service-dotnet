@@ -8,10 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ep_models" Version="1.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="RestSharp" Version="110.2.0" />
-    <PackageReference Include="test-packs" Version="1.0.1" />
+    <PackageReference Include="test-packs" Version="1.0.7" />
   </ItemGroup>
 
 </Project>

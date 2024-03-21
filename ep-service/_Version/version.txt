@@ -1,0 +1,11 @@
+﻿1.0.1
+Jan 2024
+Initial version to Prod
+
+1.0.2
+Feb 2024
+Downgrade to .NET standard 2.0
+
+1.0.3
+20 Mar 2024
+Using updated Models witout @ID fields in JSON
