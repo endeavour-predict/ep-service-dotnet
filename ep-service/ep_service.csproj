@@ -14,9 +14,12 @@ Using updated Models witout @ID fields in JSON</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ep_models" Version="1.0.4" />
+    <PackageReference Include="ep_models" Version="1.0.5" />
     <PackageReference Include="QRisk3" Version="3.0.1">
       <Aliases>qrisk3</Aliases>
+    </PackageReference>
+    <PackageReference Include="X05" Version="1.0.0">
+      <Aliases>X05</Aliases>
     </PackageReference>
   </ItemGroup>
 

@@ -1,6 +1,7 @@
 ﻿// we have to alias the engine DLLs because they all contain things in the same namespace,
 // see: https://stackoverflow.com/questions/9194495/type-exists-in-2-assemblies
 extern alias qrisk3;
+extern alias X05;
 //extern alias qdiab;
 //extern alias qfrac;
 //extern alias qfracsd; // qfracture has a different DLL for ther StandardDefns, the other two don't!
@@ -103,7 +104,7 @@ namespace ep_service
             //                        smoke_cat: (qdiab::CRStandardDefinitions.SmokeCat)calcInputModel.smokingStatus,
             //                        town: calcInputModel.townsendScore
             //                        );
-                
+
             //    predictionModel.EngineResults.Add(new EngineResultModel(calcResult, calcInputModel));
             //}
 
@@ -147,8 +148,40 @@ namespace ep_service
             //    predictionModel.EngineResults.Add(new EngineResultModel(calcResult, calcInputModel));
             //}
 
+
+
+            if (inputModel.requestedEngines.Contains(EPStandardDefinitions.Engines.X05))
+            {
+                var calc = new X05::X05_oesophagealcancerEngine.X05_oesophagealcancerAlgorithmCalculator("", "");
+
+                var calcInputModel = new X05InputModel();                
+                InputMapper.MapServiceInputToCalculatorInput<X05InputModel>(inputModel, ref calcInputModel);
+
+                var calcResult = calc.calculate(                                    
+                                    sex: (X05::CRStandardDefinitions.Gender)calcInputModel.sex,
+                                    age: calcInputModel.age,                                    
+                                    bmi: calcInputModel.BMI.Value,
+                                    ethnicity: (X05::CRStandardDefinitions.Ethnicity)calcInputModel.ethnicity,
+                                    alcoholCat6 : (X05::CRStandardDefinitions.AlcoholCat6)calcInputModel.alcoholStatus,
+                                    b_barretts: calcInputModel.barrettsOesophagus,
+                                    b_bloodcancer: calcInputModel.bloodCancer,
+                                    b_breastcancer: calcInputModel.breastCancer,
+                                    b_hiatushernia: calcInputModel.hiatusHernia,
+                                    b_hpylori: calcInputModel.hPyloriInfection,
+                                    b_lungcancer: calcInputModel.lungCancer,                                    
+                                    c_hb:  calcInputModel.anaemia,
+                                    ppicat: (X05::CRStandardDefinitions.PPICat)calcInputModel.protonPumpInhibitorStatus,                                    
+                                    surv:  calcInputModel.predictionYears,
+                                    smoke_cat: (X05::CRStandardDefinitions.SmokeCat)calcInputModel.smokingStatus,
+                                    town: calcInputModel.townsendScore
+                                    );
+
+                predictionModel.EngineResults.Add(new EngineResultModel(calcResult, calcInputModel));
+            }
+
+
         }
 
-      
+
     }
 }
