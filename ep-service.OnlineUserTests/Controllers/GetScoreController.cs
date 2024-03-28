@@ -9,19 +9,15 @@ using System.Text.Json;
 namespace ep_service.OnlineTests.Controllers
 {
     public class GetScoreController : Controller
-    {
-        private readonly ILogger<GetScoreController> _logger;
-
-        public GetScoreController(ILogger<GetScoreController> logger)
-        {
-            _logger = logger;
+    {        
+        public GetScoreController()
+        {            
         }
 
         [HttpPost]
         public IActionResult Index([FromForm] string inputModelJSON)
         {
-            // try and deserialise the inputput model string as a EPInputModel       
-            // JsonSerializer.Deserialize<EPInputModel>(inputModelJSON);
+            // try and deserialise the inputput model string as a EPInputModel                   
             EPInputModel inputModel  = JsonConvert.DeserializeObject<EPInputModel>(inputModelJSON);
 
             var service = new ep_service.PredictionService();
@@ -29,16 +25,6 @@ namespace ep_service.OnlineTests.Controllers
        
             return View(result);
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        
     }
 }
