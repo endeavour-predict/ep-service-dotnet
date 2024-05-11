@@ -89,7 +89,7 @@ else
         var outputFile = inputFile.Replace("input", "output");
         if (!File.Exists(outputFile))
         {
-            Console.WriteLine("ERROR. Correspnding outputFile file not found: " + outputFile);
+            Console.WriteLine("ERROR. Corresponding outputFile file not found: " + outputFile);
             anythingFailed = true;
             continue;
         }
