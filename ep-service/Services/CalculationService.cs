@@ -5,7 +5,7 @@
 //extern alias qfrac;
 //extern alias qfracsd; // qfracture has a different DLL for ther StandardDefns, the other two don't!
 
-using Core;
+using ep_core;
 using ep_models;
 using System;
 
@@ -77,14 +77,14 @@ namespace ep_service
 
             if (inputModel.requestedEngines.Contains(EPStandardDefinitions.Engines.QDiabetes))
             {
-                var calc = new qdiab::QDiabetesEngine.QDiabetesAlgorithmCalculator("", "");
+                var calc = new QDiabetesEngine.QDiabetesAlgorithmCalculator("", "");
 
                 var calcInputModel = new QDiabetesInputModel();
-                InputMapper.MapApiInputToCalculatorInput(inputModel, ref calcInputModel);
+                InputMapper.MapServiceInputToCalculatorInput(inputModel, ref calcInputModel);
 
                 var calcResult = calc.calculate(
-                                    diabetes_cat: (qdiab::CRStandardDefinitions.DiabetesCat)calcInputModel.diabetesStatus,
-                                    sex: (qdiab::CRStandardDefinitions.Gender)calcInputModel.sex,
+                                    diabetes_cat: (EPStandardDefinitions.DiabetesCat)calcInputModel.diabetesStatus,
+                                    sex: (EPStandardDefinitions.Gender)calcInputModel.sex,
                                     age: calcInputModel.age,
                                     b_atypicalantipsy: calcInputModel.atypicalAntipsychoticMedication,
                                     b_corticosteroids: calcInputModel.systemicCorticosteroids,
@@ -96,11 +96,11 @@ namespace ep_service
                                     b_statin: calcInputModel.statins,
                                     b_treatedhyp: calcInputModel.bloodPressureTreatment,
                                     bmi: calcInputModel.BMI,
-                                    ethnicity: (qdiab::CRStandardDefinitions.Ethnicity)calcInputModel.ethnicity,
+                                    ethnicity: (EPStandardDefinitions.Ethnicity)calcInputModel.ethnicity,
                                     fbs: calcInputModel.fastingBloodGlucose,
                                     fh_diab: calcInputModel.familyHistoryDiabetes,
                                     hba1c: calcInputModel.hba1c,
-                                    smoke_cat: (qdiab::CRStandardDefinitions.SmokeCat)calcInputModel.smokingStatus,
+                                    smoke_cat: (EPStandardDefinitions.SmokeCat)calcInputModel.smokingStatus,
                                     town: calcInputModel.townsendScore
                                     );
 

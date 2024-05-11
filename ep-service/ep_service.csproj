@@ -15,6 +15,7 @@ Using updated Models witout @ID fields in JSON</Description>
 
   <ItemGroup>
     <ProjectReference Include="..\..\ep-models\ep_models.csproj" />
+    <ProjectReference Include="..\..\qdiabetes\QDiabetes-EH\QDiabetes-EH.csproj" />
     <ProjectReference Include="..\..\qrisk3\Engine\QRISK3-EH.csproj" />
   </ItemGroup>
 
