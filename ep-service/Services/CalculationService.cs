@@ -8,6 +8,8 @@
 using ep_core;
 using ep_models;
 using System;
+using X05_oesophagealcancerEngine;
+using static ep_core.EPStandardDefinitions;
 
 namespace ep_service
 {
@@ -102,6 +104,36 @@ namespace ep_service
                                     hba1c: calcInputModel.hba1c,
                                     smoke_cat: (EPStandardDefinitions.SmokeCat)calcInputModel.smokingStatus,
                                     town: calcInputModel.townsendScore
+                                    );
+
+                predictionModel.EngineResults.Add(new EngineResultModel(calcResult, calcInputModel));
+            }
+
+
+            if (inputModel.requestedEngines.Contains(EPStandardDefinitions.Engines.X05))
+            {
+                var calc = new X05_oesophagealcancerAlgorithmCalculator("", "");
+
+                var calcInputModel = new X05InputModel();
+                InputMapper.MapServiceInputToCalculatorInput(inputModel, ref calcInputModel);
+
+                var calcResult = calc.calculate(                                    
+                                    sex: (EPStandardDefinitions.Gender)calcInputModel.sex,
+                                    age: calcInputModel.age,                                    
+                                    bmi: calcInputModel.BMI.Value,
+                                    ethnicity: (EPStandardDefinitions.Ethnicity)calcInputModel.ethnicity,                                    
+                                    smoke_cat: (EPStandardDefinitions.SmokeCat)calcInputModel.smokingStatus,
+                                    town: calcInputModel.townsendScore,
+                                    alcoholCat6 : calcInputModel.alcoholStatus,
+                                    b_barretts: calcInputModel.barrettsOesophagus,
+                                    b_bloodcancer: calcInputModel.bloodCancer,
+                                    b_breastcancer: calcInputModel.breastCancer,
+                                    b_hiatushernia: calcInputModel.hiatusHernia,
+                                    b_hpylori: calcInputModel.hPyloriInfection,
+                                    b_lungcancer: calcInputModel.lungCancer,
+                                    c_hb: calcInputModel.anaemia,
+                                    ppicat: calcInputModel.protonPumpInhibitorStatus,
+                                    surv : calcInputModel.predictionYears                                    
                                     );
 
                 predictionModel.EngineResults.Add(new EngineResultModel(calcResult, calcInputModel));
