@@ -7,44 +7,43 @@ using Formatting = Newtonsoft.Json.Formatting;
 
 /*
     Examples of use:
-    dotnet run "/Users/johncroasdale/Documents/IntegrationTestData" https://o5hb3y26z2c4cs5ao4aqzoiiby0cjzmu.lambda-url.eu-west-2.on.aws/
-    dotnet run TestPack https://o5hb3y26z2c4cs5ao4aqzoiiby0cjzmu.lambda-url.eu-west-2.on.aws/
+    dotnet run "/Users/johncroasdale/Documents/IntegrationTestData" https://api.endeavourpredict.org/epredict/ <token>
+    dotnet run TestPack https://api.endeavourpredict.org/epredict/ <token>
  */
 
 Console.WriteLine("---------------------------");
-if (args.Length != 2)
+if (args.Length != 3)
 {
-    Console.WriteLine("Windows Usage: ep_service.IntegrationTests.exe <pathToJSONFilesOr'TestPack'> <EP_ApiEndPointURL>");
-    Console.WriteLine("Mac/Linux Usage: (in bin folder) dotnet run <pathToJSONFilesOr'TestPack'> <EP_ApiEndPointURL>");
+    Console.WriteLine("Windows Usage: ep_service.IntegrationTests.exe <pathToJSONFilesOr'TestPack'> <EP_ApiEndPointURL> <token>");
+    Console.WriteLine("Mac/Linux Usage: (in bin folder) dotnet run <pathToJSONFilesOr'TestPack'> <EP_ApiEndPointURL> <token>");
     Console.WriteLine("");
     Console.WriteLine("First Parameter should be the path to the JSON input files, OR the word TestPack, if you want to run the examples from the test pack.");
-    Console.WriteLine("Second Parameter should be the URL of the service, e.g..https://o5hb3y26z2c4cs5ao4aqzoiiby0cjzmu.lambda-url.eu-west-2.on.aws/ ");
+    Console.WriteLine("Second Parameter should be the URL of the service, e.g..https://api.endeavourpredict.org/epredict/ ");
+    Console.WriteLine("Third Parameter should be your token (see https://dev.endeavourpredict.org/) ");
     Console.WriteLine("---------------------------");
     return;
 }
 
-string arg0 = args[0];
-string arg1 = args[1];
+string testFilePath = args[0];
+string endpoint = args[1];
+string token = args[2];
 
 bool testPackMode = false;
 
-if (arg0.ToLower() == "testpack")
+if (testFilePath.ToLower() == "testpack")
 {
     Console.WriteLine("Running in TestPack mode.");
     testPackMode = true;
 }
 else
 {
-    if (!Directory.Exists(arg0))
+    if (!Directory.Exists(testFilePath))
     {
-        Console.WriteLine("Cannot find directory: '" + arg0 + "'");
+        Console.WriteLine("Cannot find directory: '" + testFilePath + "'");
         return;
     }
-    Console.WriteLine("Running in directory mode. Found directory: '" + arg0 + "'");
+    Console.WriteLine("Running in directory mode. Found directory: '" + testFilePath + "'");
 }
-
-
-
 
 List<string> resultsLines = new List<string>();
 Console.WriteLine("---------------------------");
@@ -53,15 +52,10 @@ Console.WriteLine(DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss"));
 Console.WriteLine("---------------------------");
 int testsRun = 0;
 
-
-
 var serializer = new Newtonsoft.Json.JsonSerializer();
 EPInputModel epInputModel = new EPInputModel();
 PredictionModel expectedPredictionModel = new PredictionModel();
 bool anythingFailed = false;
-
-string testFilePath = args[0];
-string endpoint = args[1];
 
 if (testPackMode)
 {
@@ -71,7 +65,7 @@ if (testPackMode)
     {        
         var expected_serviceResult = test.PredictionModel;        
         string inputFile = JsonConvert.SerializeObject(test.EPInputModel);        
-        RunTest(ref testsRun, expected_serviceResult, ref anythingFailed, endpoint, inputFile, test.TestName);
+        RunTest(ref testsRun, expected_serviceResult, ref anythingFailed, endpoint, token, inputFile, test.TestName);
     }
 }
 else
@@ -103,7 +97,7 @@ else
             }
         }
         string jsonInput = File.ReadAllText(inputFile);
-        RunTest(ref testsRun, expectedPredictionModel, ref anythingFailed, endpoint, jsonInput, inputFile);
+        RunTest(ref testsRun, expectedPredictionModel, ref anythingFailed, endpoint, token, jsonInput, inputFile);
     }
 }
 
@@ -125,13 +119,14 @@ else
 }
 Console.WriteLine("---------------------------");
 
-static void RunTest(ref int testsRun, PredictionModel expectedPredictionModel, ref bool anythingFailed, string endpoint, string jsonInput, string testName)
+static void RunTest(ref int testsRun, PredictionModel expectedPredictionModel, ref bool anythingFailed, string endpoint, string token, string jsonInput, string testName)
 {
     Console.WriteLine("Testing : " + testName);
 
     // call the API for the actual result    
     var client = new RestClient(endpoint);
     var request = new RestRequest("Prediction", Method.Post);
+    request.AddHeader("X-Gravitee-Api-Key", token);
     request.AddJsonBody(jsonInput);
     var response = client.ExecutePost(request);
     
