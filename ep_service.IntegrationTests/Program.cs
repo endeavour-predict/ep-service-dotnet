@@ -19,6 +19,7 @@ if (args.Length != 3)
     Console.WriteLine("");
     Console.WriteLine("First Parameter should be the path to the JSON input files, OR the word TestPack, if you want to run the examples from the test pack.");
     Console.WriteLine("Second Parameter should be the URL of the service, e.g..https://api.endeavourpredict.org/epredict/ ");
+    Console.WriteLine("Third Parameter should be your token (see https://dev.endeavourpredict.org/) ");
     Console.WriteLine("---------------------------");
     return;
 }
