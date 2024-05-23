@@ -83,7 +83,7 @@ else
         var outputFile = inputFile.Replace("input", "output");
         if (!File.Exists(outputFile))
         {
-            Console.WriteLine("ERROR. Correspnding outputFile file not found: " + outputFile);
+            Console.WriteLine("ERROR. Corresponding outputFile file not found: " + outputFile);
             anythingFailed = true;
             continue;
         }
@@ -143,7 +143,7 @@ static void RunTest(ref int testsRun, PredictionModel expectedPredictionModel, r
 
     // compare results and write out to file/ console
     var actual_serviceResult = actualPredictionModel;
-    var actual_engineScores = actual_serviceResult.EngineResults.Where(p => p.EngineName == Core.EPStandardDefinitions.Engines.QRisk3).Single();
+    var actual_engineScores = actual_serviceResult.EngineResults.Where(p => p.EngineName == ep_core.EPStandardDefinitions.Engines.QRisk3).Single();
 
 
 

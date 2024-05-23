@@ -1,13 +1,15 @@
 ﻿// we have to alias the engine DLLs because they all contain things in the same namespace,
 // see: https://stackoverflow.com/questions/9194495/type-exists-in-2-assemblies
-extern alias qrisk3;
+//extern alias qrisk3;
 //extern alias qdiab;
 //extern alias qfrac;
 //extern alias qfracsd; // qfracture has a different DLL for ther StandardDefns, the other two don't!
 
-using Core;
+using ep_core;
 using ep_models;
 using System;
+using X05_oesophagealcancerEngine;
+using static ep_core.EPStandardDefinitions;
 
 namespace ep_service
 {
@@ -23,7 +25,7 @@ namespace ep_service
             
             if (inputModel.requestedEngines.Contains(EPStandardDefinitions.Engines.QRisk3))
             {
-                var calc = new qrisk3::QRISK3Engine.QRiskCVDAlgorithmCalculator("", "");
+                var calc = new QRISK3Engine.QRiskCVDAlgorithmCalculator("", "");
 
                 // SBP: If provided we use the mean and StDev, If not we calculate it from the list of SBPs
                 Double? meanSBP = inputModel.systolicBloodPressureMean;
@@ -48,7 +50,7 @@ namespace ep_service
                 
                 var calcResult = calc.calculate(
                                     b_cvd: calcInputModel.CVD,
-                                    sex: (qrisk3::CRStandardDefinitions.Gender)calcInputModel.sex,
+                                    sex: (EPStandardDefinitions.Gender)calcInputModel.sex,
                                     age: calcInputModel.age,
                                     b_AF: calcInputModel.atrialFibrillation,
                                     b_atypicalantipsy: calcInputModel.atypicalAntipsychoticMedication,
@@ -60,14 +62,14 @@ namespace ep_service
                                     b_semi: calcInputModel.severeMentalIllness,
                                     b_sle: calcInputModel.systemicLupusErythematosus,
                                     b_treatedhyp: calcInputModel.bloodPressureTreatment,
-                                    diabetes_cat: (qrisk3::CRStandardDefinitions.DiabetesCat)calcInputModel.diabetesStatus,
+                                    diabetes_cat: (EPStandardDefinitions.DiabetesCat)calcInputModel.diabetesStatus,
                                     bmi: calcInputModel.BMI,
-                                    ethnicity: (qrisk3::CRStandardDefinitions.Ethnicity)calcInputModel.ethnicity,
+                                    ethnicity: (EPStandardDefinitions.Ethnicity)calcInputModel.ethnicity,
                                     fh_cvd: calcInputModel.familyHistoryCHD,
                                     rati: calcInputModel.cholesterolRatio,
                                     sbp: meanSBP,
                                     sbps5: stDev,
-                                    smoke_cat: (qrisk3::CRStandardDefinitions.SmokeCat)calcInputModel.smokingStatus,
+                                    smoke_cat: (EPStandardDefinitions.SmokeCat)calcInputModel.smokingStatus,
                                     town: calcInputModel.townsendScore
                                     );
 
@@ -75,37 +77,67 @@ namespace ep_service
             }
 
 
-            //if (inputModel.requestedEngines.Contains(EPStandardDefinitions.Engines.QDiabetes.ToString()))
-            //{
-            //    var calc = new qdiab::QDiabetesEngine.QDiabetesAlgorithmCalculator("", "");
+            if (inputModel.requestedEngines.Contains(EPStandardDefinitions.Engines.QDiabetes))
+            {
+                var calc = new QDiabetesEngine.QDiabetesAlgorithmCalculator("", "");
 
-            //    var calcInputModel = new QDiabetesInputModel();
-            //    InputMapper.MapApiInputToCalculatorInput(inputModel, ref calcInputModel);
+                var calcInputModel = new QDiabetesInputModel();
+                InputMapper.MapServiceInputToCalculatorInput(inputModel, ref calcInputModel);
 
-            //    var calcResult = calc.calculate(
-            //                        diabetes_cat: (qdiab::CRStandardDefinitions.DiabetesCat)calcInputModel.diabetesStatus,
-            //                        sex: (qdiab::CRStandardDefinitions.Gender)calcInputModel.sex,
-            //                        age: calcInputModel.age,
-            //                        b_atypicalantipsy: calcInputModel.atypicalAntipsychoticMedication,
-            //                        b_corticosteroids: calcInputModel.systemicCorticosteroids,
-            //                        b_cvd: calcInputModel.CVD,
-            //                        b_gestdiab: calcInputModel.gestationalDiabetes,
-            //                        b_learning: calcInputModel.learningDisabilities,
-            //                        b_manicschiz: calcInputModel.manicDepressionSchizophrenia,
-            //                        b_pos: calcInputModel.polycysticOvaries,
-            //                        b_statin: calcInputModel.statins,
-            //                        b_treatedhyp: calcInputModel.bloodPressureTreatment,
-            //                        bmi: calcInputModel.BMI,
-            //                        ethnicity: (qdiab::CRStandardDefinitions.Ethnicity)calcInputModel.ethnicity,
-            //                        fbs: calcInputModel.fastingBloodGlucose,
-            //                        fh_diab: calcInputModel.familyHistoryDiabetes,
-            //                        hba1c: calcInputModel.hba1c,
-            //                        smoke_cat: (qdiab::CRStandardDefinitions.SmokeCat)calcInputModel.smokingStatus,
-            //                        town: calcInputModel.townsendScore
-            //                        );
-                
-            //    predictionModel.EngineResults.Add(new EngineResultModel(calcResult, calcInputModel));
-            //}
+                var calcResult = calc.calculate(
+                                    diabetes_cat: (EPStandardDefinitions.DiabetesCat)calcInputModel.diabetesStatus,
+                                    sex: (EPStandardDefinitions.Gender)calcInputModel.sex,
+                                    age: calcInputModel.age,
+                                    b_atypicalantipsy: calcInputModel.atypicalAntipsychoticMedication,
+                                    b_corticosteroids: calcInputModel.systemicCorticosteroids,
+                                    b_cvd: calcInputModel.CVD,
+                                    b_gestdiab: calcInputModel.gestationalDiabetes,
+                                    b_learning: calcInputModel.learningDisabilities,
+                                    b_manicschiz: calcInputModel.manicDepressionSchizophrenia,
+                                    b_pos: calcInputModel.polycysticOvaries,
+                                    b_statin: calcInputModel.statins,
+                                    b_treatedhyp: calcInputModel.bloodPressureTreatment,
+                                    bmi: calcInputModel.BMI,
+                                    ethnicity: (EPStandardDefinitions.Ethnicity)calcInputModel.ethnicity,
+                                    fbs: calcInputModel.fastingBloodGlucose,
+                                    fh_diab: calcInputModel.familyHistoryDiabetes,
+                                    hba1c: calcInputModel.hba1c,
+                                    smoke_cat: (EPStandardDefinitions.SmokeCat)calcInputModel.smokingStatus,
+                                    town: calcInputModel.townsendScore
+                                    );
+
+                predictionModel.EngineResults.Add(new EngineResultModel(calcResult, calcInputModel));
+            }
+
+
+            if (inputModel.requestedEngines.Contains(EPStandardDefinitions.Engines.X05))
+            {
+                var calc = new X05_oesophagealcancerAlgorithmCalculator("", "");
+
+                var calcInputModel = new X05InputModel();
+                InputMapper.MapServiceInputToCalculatorInput(inputModel, ref calcInputModel);
+
+                var calcResult = calc.calculate(                                    
+                                    sex: (EPStandardDefinitions.Gender)calcInputModel.sex,
+                                    age: calcInputModel.age,                                    
+                                    bmi: calcInputModel.BMI.Value,
+                                    ethnicity: (EPStandardDefinitions.Ethnicity)calcInputModel.ethnicity,                                    
+                                    smoke_cat: (EPStandardDefinitions.SmokeCat)calcInputModel.smokingStatus,
+                                    town: calcInputModel.townsendScore,
+                                    alcoholCat6 : calcInputModel.alcoholStatus,
+                                    b_barretts: calcInputModel.barrettsOesophagus,
+                                    b_bloodcancer: calcInputModel.bloodCancer,
+                                    b_breastcancer: calcInputModel.breastCancer,
+                                    b_hiatushernia: calcInputModel.hiatusHernia,
+                                    b_hpylori: calcInputModel.hPyloriInfection,
+                                    b_lungcancer: calcInputModel.lungCancer,
+                                    c_hb: calcInputModel.anaemia,
+                                    ppicat: calcInputModel.protonPumpInhibitorStatus,
+                                    surv : calcInputModel.predictionYears                                    
+                                    );
+
+                predictionModel.EngineResults.Add(new EngineResultModel(calcResult, calcInputModel));
+            }
 
 
             //if (inputModel.requestedEngines.Contains(EPStandardDefinitions.Engines.QFracture.ToString()))
