@@ -10,10 +10,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="RestSharp" Version="110.2.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\test-packs\test-packs.DOTNET\test-packs.csproj" />
+    <PackageReference Include="test-packs" Version="1.0.10" />
   </ItemGroup>
 
 </Project>

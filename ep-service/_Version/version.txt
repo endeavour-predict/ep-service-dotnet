@@ -9,3 +9,10 @@ Downgrade to .NET standard 2.0
 1.0.3
 20 Mar 2024
 Using updated Models witout @ID fields in JSON
+
+1.0.4
+Interim build for ep_core refactoring
+
+1.0.5
+23 May 2024
+Built against Dev branches with QDiab and X05

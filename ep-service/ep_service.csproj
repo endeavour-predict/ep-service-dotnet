@@ -6,18 +6,17 @@
     <!--<ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>-->
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.3</Version>
-    <Description>1.0.3
-20 Mar 2024
-Using updated Models witout @ID fields in JSON</Description>
+    <Version>1.0.5</Version>
+    <Description>1.0.5</Description>
     <PackageProjectUrl>https://github.com/endeavour-predict/ep-service-dotnet</PackageProjectUrl>
+    <PackageReleaseNotes>1.0.5 - QDiab and X05</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ep-models\ep_models.csproj" />
-    <ProjectReference Include="..\..\qdiabetes\QDiabetes-EH\QDiabetes-EH.csproj" />
-    <ProjectReference Include="..\..\qrisk3\Engine\QRISK3-EH.csproj" />
-    <ProjectReference Include="..\..\x05\Engine\X05_oesophagealcancerEngine.csproj" />
+    <PackageReference Include="ep_models" Version="1.0.7" />
+    <PackageReference Include="QDiabetes" Version="1.0.0" />
+    <PackageReference Include="QRisk3" Version="3.0.3" />
+    <PackageReference Include="X05" Version="1.0.2" />
   </ItemGroup>
 
 </Project>
