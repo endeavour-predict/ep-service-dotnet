@@ -18,3 +18,5 @@
 /ep_api/bin/Debug/net6.0
 /ep_service.IntegrationTests/obj
 /ep_service.IntegrationTests/bin/Debug/net6.0
+/ep_service.UnitTests/bin
+/ep_service.UnitTests/obj
