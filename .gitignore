@@ -20,3 +20,6 @@
 /ep_service.IntegrationTests/bin/Debug/net6.0
 /ep_service.UnitTests/bin
 /ep_service.UnitTests/obj
+/ep-service.OnlineUserTests/Properties/PublishProfiles/ep-serviceOnlineTests20240121152946 - Web Deploy.pubxml.user
+/ep_service.UnitTests/ep_service.UnitTests.csproj
+/ep-service.OnlineUserTests/ep_service.OnlineTests.csproj.user
