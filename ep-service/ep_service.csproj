@@ -6,14 +6,15 @@
     <!--<ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>-->
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.5</Version>
-    <Description>1.0.5</Description>
+    <Version>1.0.6</Version>
+    <Description></Description>
     <PackageProjectUrl>https://github.com/endeavour-predict/ep-service-dotnet</PackageProjectUrl>
-    <PackageReleaseNotes>1.0.5 - QDiab and X05</PackageReleaseNotes>
+    <PackageReleaseNotes>1.0.6 - 25 June 2024 - Unit tests added for QRisk and QDiab from latest test-packs
+1.0.5 - QDiab and X05</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ep_models" Version="1.0.7" />
+    <PackageReference Include="ep_models" Version="1.0.8" />
     <PackageReference Include="QDiabetes" Version="1.0.0" />
     <PackageReference Include="QRisk3" Version="3.0.3" />
     <PackageReference Include="X05" Version="1.0.2" />

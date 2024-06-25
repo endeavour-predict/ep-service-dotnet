@@ -9,5 +9,6 @@
 
 <h1 class="display-4">Result</h1>
 
-
-<pre>@Html.Raw(JsonConvert.SerializeObject(Model, Formatting.Indented, new Newtonsoft.Json.Converters.StringEnumConverter()))</pre>
+<textarea rows="30" cols="100">
+    @Html.Raw(JsonConvert.SerializeObject(Model, Formatting.Indented, new Newtonsoft.Json.Converters.StringEnumConverter()))
+</textarea>

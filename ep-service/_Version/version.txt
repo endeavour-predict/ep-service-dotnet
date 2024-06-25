@@ -16,3 +16,7 @@ Interim build for ep_core refactoring
 1.0.5
 23 May 2024
 Built against Dev branches with QDiab and X05
+
+1.0.6
+25 Jun 2024
+Unit tests added for QRisk and QDiab from latest test-packs
